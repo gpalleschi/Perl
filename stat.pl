@@ -1,18 +1,27 @@
 #!/usr/bin/perl -w
 
 #
-# stat.pl 
+# stat.pl ver 1.0
 #
 #
 # This script execute a stat of a file in UNIX/LINUX environment
 #
 
+# Check parameters
+if ($#ARGV < 0 ) {
+   printf("\n Use stat.pl with one parameter, file name.\n\n");
+   exit;
+}
+
+# Check if file exists
+if ( !(-e $ARGV[0]) ) {
+   printf("\n File <$ARGV[0]> don't exists.\n\n");
+   exit;
+}
 
 ($dev, $ino, $mode, $nlink, $uid, $gid, $rdev, $size,
 
     $atime, $mtime, $ctime, $blksize, $blocks) = stat($ARGV[0]);
-
- 
 
 print("dev     = $dev\n");
 
